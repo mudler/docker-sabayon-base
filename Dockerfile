@@ -27,3 +27,6 @@ RUN /bin/bash /sabayon-configuration-build.sh && rm -rf /sabayon-configuration-b
 # Perform before-upgrade tasks (mirror sorting, updating repository db, removing portage and keeping profiles and metadata)
 RUN mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org && equo up && equo repo mirrorsort sabayonlinux.org && cd /usr/portage/;ls | grep -v 'profiles' | grep -v 'metadata' | xargs rm -rf
 
+# Cleanup and applying configs
+ADD ./script/post-update.sh /post-update.sh
+RUN /bin/bash /post-update.sh && rm -rf /post-update.sh
