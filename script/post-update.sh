@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remove compilation tools
+equo rm --nodeps --force-system autoconf automake bison yacc binutils libtool gcc localepurge
+
 # Remove scripts
 rm -rf /equo-rescue-generate.exp
 rm -rf /equo.sql
