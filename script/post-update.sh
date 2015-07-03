@@ -1,5 +1,15 @@
 #!/bin/bash
 
+mkdir -p /etc/portage/repos.conf/
+echo "[DEFAULT]
+main-repo = gentoo
+
+[gentoo]
+location = /usr/portage
+sync-type = rsync
+sync-uri = rsync://rsync.europe.gentoo.org/gentoo-portage
+" > /etc/portage/repos.conf/gentoo.conf
+
 # Remove compilation tools
 equo rm --nodeps --force-system autoconf automake bison yacc binutils libtool gcc localepurge
 
