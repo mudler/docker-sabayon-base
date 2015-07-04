@@ -39,10 +39,11 @@ ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept
 equo i $(equo q list installed -qv  | sed 's/-[0-9]\{1,\}.*$//' | xargs echo)
 #equo i $(cat /etc/sabayon-pkglist | xargs echo)
 
+equo i --nodeps grep busybox patch
+
 # cleaning licenses accepted
 rm -rf /etc/entropy/packages/license.accept
 rm -rf /usr/portage/licenses
-
 
 # Writing package list file
 equo q list installed -qv > /etc/sabayon-pkglist
