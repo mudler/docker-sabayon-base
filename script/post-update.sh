@@ -1,5 +1,7 @@
 #!/bin/bash
 
+layman -d plab
+
 # Remove scripts
 rm -rf /equo-rescue-generate.exp
 rm -rf /equo.sql
