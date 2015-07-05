@@ -6,7 +6,6 @@ MAINTAINER mudler <mudler@sabayonlinux.org>
 RUN echo "en_US.UTF-8 UTF-8 " >> /etc/locale.gen &&  locale-gen &&  eselect locale set en_US.utf8 && env-update && source /etc/profile
 ENV LC_ALL=en_US.UTF-8
 
-<<<<<<< HEAD
 # Upgrading portage
 RUN emerge --sync --quiet && layman -S && layman -a sabayon
 
