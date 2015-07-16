@@ -1,11 +1,15 @@
-FROM plabedan/gentoo
+FROM sabayon/gentoo-stage3-base-amd64
+
+MAINTAINER mudler <mudler@sabayonlinux.org>
 
 # Set locales to en_US.UTF-8
 RUN echo "en_US.UTF-8 UTF-8 " >> /etc/locale.gen &&  locale-gen &&  eselect locale set en_US.utf8 && env-update && source /etc/profile
 ENV LC_ALL=en_US.UTF-8
 
-# Upgrading portage
-RUN emerge --sync > /dev/null 2>&1 && layman -a sabayon
+# Upgrading portage and installing necessary packages
+RUN rm -rf '/usr/portage/metadata/timestamp.chk' && \
+	 emerge --sync --quiet && \
+	layman -S && layman -a sabayon
 
 # Configure the sabayon box, installing equo setting up locales
 ADD ./script/sabayon-configuration.sh /

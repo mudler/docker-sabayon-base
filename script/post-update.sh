@@ -1,6 +1,23 @@
 #!/bin/bash
 
-layman -d plab
+mkdir -p /etc/portage/repos.conf/
+echo "[DEFAULT]
+main-repo = gentoo
+
+[gentoo]
+location = /usr/portage
+sync-type = rsync
+sync-uri = rsync://rsync.europe.gentoo.org/gentoo-portage
+" > /etc/portage/repos.conf/gentoo.conf
+
+# Remove compilation tools
+equo rm --nodeps --force-system autoconf automake bison yacc gcc localepurge
+
+# Writing package list file
+equo q list installed -qv > /etc/sabayon-pkglist
+
+equo cleanup
+
 
 # Remove scripts
 rm -rf /equo-rescue-generate.exp
@@ -20,5 +37,8 @@ rm -rf /etc/zsh
 
 rm -rf /post-update.sh
 
-# Writing package list file
-equo q list installed -qv > /etc/sabayon-pkglist
+# cleaning licenses accepted
+rm -rf /etc/entropy/packages/license.accept
+rm -rf /usr/portage/licenses
+
+
