@@ -34,3 +34,14 @@ RUN mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/en
 # Cleanup and applying configs
 ADD ./script/post-update.sh /post-update.sh
 RUN /bin/bash /post-update.sh && rm -rf /post-update.sh
+
+# Set environment variables.
+ENV HOME /root
+
+# Define working directory.
+WORKDIR /root
+
+# Define default command.
+CMD ["bash"]
+
+
