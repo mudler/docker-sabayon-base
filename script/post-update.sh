@@ -129,6 +129,9 @@ equo rm --deep --configfiles --force-system "${PACKAGES_TO_REMOVE[@]}"
 # Remove compilation tools
 equo rm --nodeps --force-system autoconf automake bison yacc gcc localepurge
 
+# Setting default locale gen
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+
 # Writing package list file
 equo q list installed -qv > /etc/sabayon-pkglist
 
