@@ -127,7 +127,7 @@ echo -5 | equo conf update
 equo rm --deep --configfiles --force-system "${PACKAGES_TO_REMOVE[@]}"
 
 # Remove compilation tools
-equo rm --nodeps --force-system autoconf automake bison yacc gcc localepurge
+equo rm --nodeps --force-system automake bison yacc gcc localepurge
 
 # Writing package list file
 equo q list installed -qv > /etc/sabayon-pkglist
